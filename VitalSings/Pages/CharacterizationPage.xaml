@@ -1,0 +1,118 @@
+﻿<Page x:Class="VitalSings.Pages.CharacterizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VitalSings.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CharacterizationPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="\Resources\FonForApp.jpg"/>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" 
+                BorderBrush="Black" BorderThickness="1" 
+                HorizontalAlignment="Center" 
+                Background="AliceBlue">
+            <StackPanel 
+                        HorizontalAlignment="Center" 
+                        Background="AliceBlue"  
+                        Margin="10 10 10 10">
+                <TextBlock
+                 Text="Ваши характеристики"
+                 Style="{StaticResource TitleTextStyle}"
+                 HorizontalAlignment="Center"/>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="Рост"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="-"
+                            Click="HeightMinusBT_Click"/>
+                        <TextBox
+                            TextAlignment="Center"
+                            Margin="10 0 10 0"
+                            Width="80"
+                             TextChanged="CountTB_TextChanged"
+                             PreviewTextInput ="CountTB_PreviewTextInput"
+                            x:Name="HeightTB"/>
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="+"
+                            Click="HeightPlusBT_Click"/>
+                    </StackPanel>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="Вес"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="-"
+                            x:Name="MassMinusBT"
+                            Click="MassMinusBT_Click"
+                            />
+                        <TextBox Margin="10 0 10 0"
+                            x:Name="MassTB"
+                                  TextChanged="CountTB_TextChanged"
+                                 TextAlignment="Center"
+                                 PreviewTextInput ="CountTB_PreviewTextInput"
+                                 Width="80"/>
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="+"
+                            x:Name="MassPlusBT"
+                            Click="MassPlusBT_Click"/>
+                    </StackPanel>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="Возраст"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="-"
+                            x:Name="AgeMinusBT"
+                            Click="AgeMinusBT_Click"/>
+                        <TextBox Margin="10 0 10 0"
+                            Width="80"
+                                  TextChanged="CountTB_TextChanged"
+                                 TextAlignment="Center"
+                            PreviewTextInput ="CountTB_PreviewTextInput"
+                            x:Name="AgeTB"/>
+                        <Button
+                            Height="30"
+                            Width="30"
+                            Content="+"
+                            x:Name="AgePlusBT"
+                            Click="AgePlusBT_Click"/>
+                    </StackPanel>
+                    <TextBlock 
+                          Text="Цель"
+                          HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="PurposeCB"
+                              DisplayMemberPath="Name"/>
+                    <Button
+                        x:Name="NextBT"
+                        Click="NextBT_Click"
+                        Content="Далее"
+                        Margin="0 10 0 0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,102 @@
+﻿<Page x:Class="VitalSings.Pages.StatisticPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VitalSings.Pages"
+              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StatisticPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="1" BorderBrush="Black">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#5AB2FF"/>
+                    <GradientStop Color="#CAF4FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Margin="0 0 10 0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/MainLogo.png" Height="30" Width="30"/>
+                    <TextBlock
+                x:Name="MainTB"
+MouseLeftButtonDown="MainTB_MouseLeftButtonDown"
+     Margin="5 4 0 0"
+     Text="Главная"
+     TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 10">
+                    <Image Source="/Resources/StatisticLogo.png" Height="30" Width="30"/>
+                    <TextBlock 
+     Margin="5 4 0 0"
+     Text="Статистика"
+     TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/ProfileLogo.png" Height="30" Width="30"/>
+                    <TextBlock Text="Профиль"
+                       x:Name="ProfileTB"
+                       MouseLeftButtonDown="ProfileTB_MouseLeftButtonDown"
+     Margin="5 4 0 0"
+     TextAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="1" Background="#FFCBFDFF"/>
+        <Viewbox Grid.Column="1">
+            <StackPanel  Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock
+            Margin="0 0 0 10"
+            HorizontalAlignment="Center"
+            Text="Статистика по приемам пищи"/>
+                    <lvc:CartesianChart Name="nutritionsChart"
+                            MinHeight="500" Height="auto"
+                                        Width="auto"
+                                MinWidth="400">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Дата" Labels="{Binding Dates}" />
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Количество" LabelFormatter="{Binding NFormatter}" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                    <Button Content="Распечатать"
+                            x:Name="PrintNutritionsChart"
+                            Click="PrintNutritionsChart_Click"
+                            Margin="5"/>
+                </StackPanel>
+                
+                <StackPanel Margin="10 0 0 0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Margin="0 0 0 10"
+                        Text="Статистика по приемам воды"/>
+                    <lvc:CartesianChart Name="waterChart"
+                            Width="auto"
+                            MinWidth="400"
+                            Height="auto"
+                            MinHeight="500">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Дата" Labels="{Binding WaterDates}" />
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Миллилитры" LabelFormatter="{Binding LitersFormatter}" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                    <Button Content="Распечатать"
+                            Margin="5"
+                            x:Name="PrintWaterChart"
+                            Click="PrintWaterChart_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+</Page>

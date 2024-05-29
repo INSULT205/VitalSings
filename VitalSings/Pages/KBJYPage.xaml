@@ -1,0 +1,68 @@
+﻿<Page x:Class="VitalSings.Pages.KBJYPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VitalSings.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="KBJYPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="\Resources\FonForApp.jpg"/>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Background="AliceBlue">
+            <StackPanel Margin="10 10 10 10">
+                <StackPanel>
+                    <TextBlock
+                    Text="Расчет КБЖУ"
+                    Style="{StaticResource TitleTextStyle}"/>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    TextWrapping="Wrap"
+                    Text="Согласно расчетам по формуле Мифллин-Сан Жеора вам требуется:"/>
+                </StackPanel>
+                <StackPanel Margin="0 50 0 50">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                        Text="Килокалорий: "/>
+                        <TextBlock x:Name="CaloriesTB"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                        Text="Белков:"/>
+                        <TextBlock x:Name="ProteinTB"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                        Text="Жиров: "/>
+                        <TextBlock x:Name="FatsTB"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                        Text="Углеводов: "/>
+                        <TextBlock x:Name="CarbohydratesTB"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <Button
+                        Margin="0 0 0 10"
+                        VerticalAlignment="Bottom"
+                        x:Name="NextBT"
+                        Click="NextBT_Click"
+                        Content="Приступить к пользованию"
+                        HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+           
+    </Grid>
+</Page>

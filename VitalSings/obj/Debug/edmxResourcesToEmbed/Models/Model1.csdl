@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VitalSignsModelsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="VitalSignsModelsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="VitalSignsModelsModel.Category" />
+    <EntitySet Name="Gender" EntityType="VitalSignsModelsModel.Gender" />
+    <EntitySet Name="Lifestyle" EntityType="VitalSignsModelsModel.Lifestyle" />
+    <EntitySet Name="Nutrition" EntityType="VitalSignsModelsModel.Nutrition" />
+    <EntitySet Name="Product" EntityType="VitalSignsModelsModel.Product" />
+    <EntitySet Name="Purpose" EntityType="VitalSignsModelsModel.Purpose" />
+    <EntitySet Name="sysdiagrams" EntityType="VitalSignsModelsModel.sysdiagrams" />
+    <EntitySet Name="Unit" EntityType="VitalSignsModelsModel.Unit" />
+    <EntitySet Name="User" EntityType="VitalSignsModelsModel.User" />
+    <EntitySet Name="WaterIntake" EntityType="VitalSignsModelsModel.WaterIntake" />
+    <AssociationSet Name="FK_Product_Category" Association="VitalSignsModelsModel.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Gender" Association="VitalSignsModelsModel.FK_User_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Lifestyle" Association="VitalSignsModelsModel.FK_User_Lifestyle">
+      <End Role="Lifestyle" EntitySet="Lifestyle" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nutrition_Product" Association="VitalSignsModelsModel.FK_Nutrition_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Nutrition" EntitySet="Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nutrition_User" Association="VitalSignsModelsModel.FK_Nutrition_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Nutrition" EntitySet="Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Unit" Association="VitalSignsModelsModel.FK_Product_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Purpose" Association="VitalSignsModelsModel.FK_User_Purpose">
+      <End Role="Purpose" EntitySet="Purpose" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WaterIntake_User" Association="VitalSignsModelsModel.FK_WaterIntake_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="WaterIntake" EntitySet="WaterIntake" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="VitalSignsModelsModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="VitalSignsModelsModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Lifestyle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LevelValue" Type="Double" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="VitalSignsModelsModel.FK_User_Lifestyle" FromRole="Lifestyle" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Nutrition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="0" />
+    <Property Name="QuantityOfProduct" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="VitalSignsModelsModel.FK_Nutrition_Product" FromRole="Nutrition" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="VitalSignsModelsModel.FK_Nutrition_User" FromRole="Nutrition" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Calories" Type="Int32" />
+    <Property Name="Protein" Type="Double" />
+    <Property Name="Fats" Type="Double" />
+    <Property Name="Carbohydrates" Type="Double" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="VitalSignsModelsModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Nutrition" Relationship="VitalSignsModelsModel.FK_Nutrition_Product" FromRole="Product" ToRole="Nutrition" />
+    <NavigationProperty Name="Unit" Relationship="VitalSignsModelsModel.FK_Product_Unit" FromRole="Product" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Purpose">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="VitalSignsModelsModel.FK_User_Purpose" FromRole="Purpose" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="VitalSignsModelsModel.FK_Product_Unit" FromRole="Unit" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Height" Type="Int32" />
+    <Property Name="Mass" Type="Double" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="GenderId" Type="Int32" />
+    <Property Name="LifestyleId" Type="Int32" />
+    <Property Name="PurposeId" Type="Int32" />
+    <NavigationProperty Name="Gender" Relationship="VitalSignsModelsModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
+    <NavigationProperty Name="Lifestyle" Relationship="VitalSignsModelsModel.FK_User_Lifestyle" FromRole="User" ToRole="Lifestyle" />
+    <NavigationProperty Name="Nutrition" Relationship="VitalSignsModelsModel.FK_Nutrition_User" FromRole="User" ToRole="Nutrition" />
+    <NavigationProperty Name="Purpose" Relationship="VitalSignsModelsModel.FK_User_Purpose" FromRole="User" ToRole="Purpose" />
+    <NavigationProperty Name="WaterIntake" Relationship="VitalSignsModelsModel.FK_WaterIntake_User" FromRole="User" ToRole="WaterIntake" />
+  </EntityType>
+  <EntityType Name="WaterIntake">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuantityOfWater" Type="Int32" />
+    <Property Name="IntakeDate" Type="DateTime" Precision="0" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="VitalSignsModelsModel.FK_WaterIntake_User" FromRole="WaterIntake" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Type="VitalSignsModelsModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Gender">
+    <End Type="VitalSignsModelsModel.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Lifestyle">
+    <End Type="VitalSignsModelsModel.Lifestyle" Role="Lifestyle" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lifestyle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LifestyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nutrition_Product">
+    <End Type="VitalSignsModelsModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.Nutrition" Role="Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nutrition">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nutrition_User">
+    <End Type="VitalSignsModelsModel.User" Role="User" Multiplicity="1" />
+    <End Type="VitalSignsModelsModel.Nutrition" Role="Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nutrition">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Unit">
+    <End Type="VitalSignsModelsModel.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Purpose">
+    <End Type="VitalSignsModelsModel.Purpose" Role="Purpose" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purpose">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="PurposeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WaterIntake_User">
+    <End Type="VitalSignsModelsModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="VitalSignsModelsModel.WaterIntake" Role="WaterIntake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WaterIntake">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

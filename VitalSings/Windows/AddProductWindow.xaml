@@ -1,0 +1,91 @@
+﻿<Window x:Class="VitalSings.Windows.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VitalSings.Windows"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="\Resources\FonForApp.jpg"/>
+        </Grid.Background>
+
+        <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Background="AliceBlue">
+            <StackPanel Margin="10 10 10 10" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock
+                        Margin="10 0 0 0"
+                        Text="Добавление продукта"
+                        Style="{StaticResource TitleTextStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Название: "/>
+                        <TextBox
+                                x:Name="NameTB"
+                                Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Калории: "/>
+                        <TextBox
+                                Width="200"
+                                x:Name="CaloriesTB" TextChanged="CaloriesTB_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Белки: "/>
+                        <TextBox
+                                x:Name="ProteinTB"
+                                Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Жиры: "/>
+                        <TextBox
+                                x:Name="FatsTB"
+                                Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Углеводы: "/>
+                        <TextBox
+                                x:Name="CarbohydratesTB"
+                                Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Единица измерения: "/>
+                        <ComboBox
+                                x:Name="UnitCB"
+                                DisplayMemberPath="Name"
+                                Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <TextBlock
+                                Text="Категория продукта: "/>
+                        <ComboBox
+                                DisplayMemberPath="Name"
+                                x:Name="CategoryCB"
+                                Width="200"/>
+                    </StackPanel>
+                    <Button
+                                x:Name="AddProductBT"
+                                Click="AddProductBT_Click"
+                                Content="Добавить продукт"
+                                Margin="0 10 0 0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
