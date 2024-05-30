@@ -76,11 +76,15 @@ namespace VitalSings.Windows
 
         public void Refresh()
         {
-            QuantityNutritionTB.Text = CountProduct.ToString();
+            if (CountProduct < 10000)
+                QuantityNutritionTB.Text = CountProduct.ToString();
+            else
+                MessageBox.Show("Вы не можете столько съесть");
         }
 
         private void AddNutritionBT_Click(object sender, RoutedEventArgs e)
         {
+            Refresh();
             Nutrition nutrition = new Nutrition();
             nutrition.ProductId = contextProduct.Id;
             nutrition.UserId = contextUser.Id;
@@ -101,12 +105,21 @@ namespace VitalSings.Windows
         }
         private void CountTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (CountProduct > 0 || QuantityNutritionTB.Text == "")
+            if (QuantityNutritionTB.Text != "")
+            {
                 CountProduct = int.Parse(QuantityNutritionTB.Text);
+                Refresh();
+            }
             else
+            {
                 CountProduct = 0;
-            Refresh();
+                Refresh();
+            }
+        }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

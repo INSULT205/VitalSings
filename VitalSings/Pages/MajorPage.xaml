@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:VitalSings.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MajorPage">
+      Title="MajorPage"
+      Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>

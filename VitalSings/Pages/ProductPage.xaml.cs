@@ -26,6 +26,7 @@ namespace VitalSings.Pages
         User contextUser;
         public List<Product> Products { get; set; }
         public static List<Category> Categories { get; set; }
+
         public ProductPage(User user)
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace VitalSings.Pages
 
         private void AddProductBT_Click(object sender, RoutedEventArgs e)
         {
-            AddProductWindow addProductWindow = new AddProductWindow();
+            AddProductWindow addProductWindow = new AddProductWindow(this);
             addProductWindow.Show();
         }
 
@@ -72,7 +73,7 @@ namespace VitalSings.Pages
             App.DB.SaveChanges();
             Refresh();
         }
-        private void Refresh()
+        public void Refresh()
         {
             var filterProduct = App.DB.Product.ToList();
             if (FilterTB.Text.Length > 0)

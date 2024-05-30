@@ -77,7 +77,8 @@
                              Background="#FFCBFDFF"
                  Margin="0 4 0 0"
                  VerticalAlignment="Center"
-                 PreviewTextInput ="CountTB_PreviewTextInput"
+                 PreviewTextInput ="MassTB_PreviewTextInput"
+                 TextChanged="MassTB_TextChanged"
                  BorderThickness="0"
    TextAlignment="Right"/>
                     <TextBlock Text=" кг"/>

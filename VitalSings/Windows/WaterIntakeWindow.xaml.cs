@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +31,6 @@ namespace VitalSings.Windows
             QuantityWaterTB.Text = "0";
             contextUser = user;
             this.DataContext = this;
-
         }
 
         private void PlusFifBT_Click(object sender, RoutedEventArgs e)
@@ -74,7 +74,10 @@ namespace VitalSings.Windows
 
         private void Refresh()
         {
-            QuantityWaterTB.Text = CountWater.ToString();
+            if (CountWater < 10000)
+                QuantityWaterTB.Text = CountWater.ToString();
+            else
+                MessageBox.Show("Вы не можете выпить столько воды!");
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -87,6 +90,32 @@ namespace VitalSings.Windows
             App.DB.SaveChanges();
             MessageBox.Show("Вы выпили воду, вы большой умничка!");
             Close();
+        }
+        private void CountTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[0-9]");
+            if (!regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+        private void CountTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (QuantityWaterTB.Text != "")
+            {
+                CountWater = int.Parse(QuantityWaterTB.Text);
+                Refresh();
+            }
+            else
+            {
+                CountWater = 0;
+                Refresh();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

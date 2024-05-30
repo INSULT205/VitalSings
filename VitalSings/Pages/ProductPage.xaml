@@ -145,13 +145,6 @@
                     Content="Назад"
                     Background="#FF18A7FF"/>
             <Button 
-                    x:Name="RefreshBT"
-                    Click="RefreshBT_Click"
-                    Width="200"
-                    Background="#FF18A7FF"
-                    Margin="5 5 5 5"
-                    Content="Обновить"/>
-            <Button 
                     x:Name="AddProductBT"
                     Click="AddProductBT_Click"
                     Width="200"

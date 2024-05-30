@@ -67,9 +67,9 @@
                             />
                         <TextBox Margin="10 0 10 0"
                             x:Name="MassTB"
-                                  TextChanged="CountTB_TextChanged"
+                                  TextChanged="MassTB_TextChanged"
                                  TextAlignment="Center"
-                                 PreviewTextInput ="CountTB_PreviewTextInput"
+                                 PreviewTextInput ="MassTB_PreviewTextInput"
                                  Width="80"/>
                         <Button
                             Height="30"

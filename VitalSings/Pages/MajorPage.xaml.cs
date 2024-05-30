@@ -35,9 +35,6 @@ namespace VitalSings.Pages
         {
             InitializeComponent();
             contextUser = user;
-            ProteinPB.Maximum = Math.Round(contextUser.Protein, 2);
-            FatsPB.Maximum = Math.Round(contextUser.Fats, 2);
-            CarbohydratesPB.Maximum = Math.Round(contextUser.Carbohydrates, 2);
             Refresh();
         }
 
@@ -74,14 +71,17 @@ namespace VitalSings.Pages
                 calories += (double)nutritions[i].Product.Calories.Value / 100 * nutritions[i].QuantityOfProduct.Value;
             }
 
-            CaloriesPartName = calories.ToString();
+            CaloriesPartName = Math.Round(calories,2).ToString();
             ProteinPartName = Math.Round(protein,2).ToString();
             FatsPartName = Math.Round(fats,2).ToString();
             CarboPartName = Math.Round(carbohydrates, 2).ToString();
+
             ProteinPB.Value = protein;
             FatsPB.Value = fats;
             CarbohydratesPB.Value = carbohydrates;
-
+            ProteinPB.Maximum = Math.Round(contextUser.Protein, 2);
+            FatsPB.Maximum = Math.Round(contextUser.Fats, 2);
+            CarbohydratesPB.Maximum = Math.Round(contextUser.Carbohydrates, 2);
 
             string Cal = (Math.Round(contextUser.KBJY,2)).ToString();
             string Prot = (Math.Round(contextUser.Protein, 2)).ToString();
@@ -94,6 +94,8 @@ namespace VitalSings.Pages
             CalloriesTB.Text = CaloriesPartName + " / " + Cal;
 
             double ElipseColorIndicator = Convert.ToDouble(calories) / Convert.ToDouble(Cal);
+            if (ElipseColorIndicator > 1)
+                ElipseColorIndicator = 100;
             double value = ElipseColorIndicator;
             GradientStopCollection gradientStops = ((LinearGradientBrush)EllipseKal.Fill).GradientStops;
             gradientStops[1].Offset = value;
@@ -113,6 +115,11 @@ namespace VitalSings.Pages
         private void StatisticsTB_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new StatisticPage(contextUser));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

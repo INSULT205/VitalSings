@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitalSings.Models;
+using VitalSings.Pages;
+using static VitalSings.Pages.ProductPage;
 
 namespace VitalSings.Windows
 {
@@ -24,12 +26,14 @@ namespace VitalSings.Windows
     /// </summary>
     public partial class AddProductWindow : Window
     {
+        private ProductPage _productPage;
         List<Category> categories { get; set; }
         List<Unit> units { get; set; }
         Product Product;
-        public AddProductWindow()
+        public AddProductWindow(ProductPage productPage)
         {
             InitializeComponent();
+            _productPage = productPage;
             Product product = new Product();
             Product = product;
             categories = App.DB.Category.ToList();
@@ -75,26 +79,20 @@ namespace VitalSings.Windows
                     App.DB.Product.Add(Product);
                     App.DB.SaveChanges();
                     MessageBox.Show("Вы успешно добавили новый продукт!");
+                    _productPage.Refresh();
                     Close();
                 }
                 else
                 {
                     MessageBox.Show("Строки имели неверный формат ввода");
+                    return;
                 } 
             }
            
         }
-
-        private void CaloriesTB_TextChanged(object sender, TextChangedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.Close();
         }
     }
 }

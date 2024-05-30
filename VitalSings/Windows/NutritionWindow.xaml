@@ -19,8 +19,19 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        
-            <TextBlock
+        <StackPanel Grid.Column="2">
+            <Button Content="X" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+            Click="CloseButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#00a1ff" CornerRadius="20">
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <TextBlock
                 HorizontalAlignment="Center"
                 Grid.ColumnSpan="3"
                 Style="{StaticResource TitleTextStyle}"
@@ -58,6 +69,8 @@
                  Margin="0 40 0 10">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox
+                    TextAlignment="Center"
+                    MinWidth="200"
                      x:Name="QuantityNutritionTB"
                     TextChanged="CountTB_TextChanged"
                     PreviewTextInput ="CountTB_PreviewTextInput"
